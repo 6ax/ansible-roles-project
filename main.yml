@@ -8,14 +8,12 @@
 
 - name: Build role
   hosts: build
-  become: yes
   roles:
      - role: builder
        when:  ansible_os_family == "Debian"
 
 - name: Production role
   hosts: prod
-  become: yes
   roles:
      - role: prod
        when:  ansible_os_family == "Debian"
