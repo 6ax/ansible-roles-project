@@ -1,0 +1,15 @@
+---
+# tasks file for prod
+- name: Create a RED5 container
+  docker_container:
+    name: RED5
+    image: nexus.6ax.su/red5
+    env:
+        RED5_HOME: "/srv/red5-server"
+    command: bash /srv/red5-server/red5.sh
+    state: started
+    ports:
+        - "5080:5080"
+        - "9999:9999"
+        - "1935:1935"
+    recreate: yes

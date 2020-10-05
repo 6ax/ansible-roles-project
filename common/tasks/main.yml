@@ -1,0 +1,12 @@
+---
+# tasks file for common
+- name: Packages install
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - python-pip
+    - docker.io
+- name: Install docker package
+  pip:
+    name: docker

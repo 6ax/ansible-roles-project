@@ -1,0 +1,21 @@
+---
+- name: Common role
+  hosts: all
+  become: yes
+  roles:
+     - role: common
+  #     when: ansible_lsb.codename == 'focal'
+
+- name: Build role
+  hosts: build
+  become: yes
+  roles:
+     - role: builder
+  #     when: ansible_lsb.codename == 'focal'
+
+- name: Production role
+  hosts: prod
+  become: yes
+  roles:
+     - role: prod
+  #     when: ansible_lsb.codename == 'focal'

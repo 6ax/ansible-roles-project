@@ -1,0 +1,20 @@
+---
+# tasks file for builder
+- name: Get sourse code from git repo
+  git:
+    repo: 'http://gitlab.6ax.su/6ax/docker-compose3.git'
+    dest: /tmp/build_dir
+    clone: yes
+    update: yes
+- name: Log into private registry and force re-authorization
+  docker_login:
+    registry: nexus.6ax.su
+    username: "{{REPO_USER}}"
+    password: "{{REPO_USER_PASSWD}}"
+    reauthorize: yes
+- name: Build Docker image from Dockerfile and push to local registry
+  docker_image:
+    name: nexus.6ax.su/red5
+    path: /tmp/build_dir/maven
+    state: build
+    push: yes
