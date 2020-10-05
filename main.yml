@@ -4,18 +4,18 @@
   become: yes
   roles:
      - role: common
-  #     when: ansible_lsb.codename == 'focal'
+       when: ansible_os_family == "Debian"
 
 - name: Build role
   hosts: build
   become: yes
   roles:
      - role: builder
-  #     when: ansible_lsb.codename == 'focal'
+       when:  ansible_os_family == "Debian"
 
 - name: Production role
   hosts: prod
   become: yes
   roles:
      - role: prod
-  #     when: ansible_lsb.codename == 'focal'
+       when:  ansible_os_family == "Debian"
